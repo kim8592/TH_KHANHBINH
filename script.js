@@ -772,8 +772,8 @@ Hãy viết nhận xét cho từng học sinh theo đúng ID và trả về đú
               </header>
 
               <div className="w-full px-4 md:px-8 py-6 flex flex-wrap gap-4 items-stretch">
-                <SectionBox label="📅 Năm học" items={years} selectedId={selectedYearId} onSelect={setSelectedYearId} type="year" />
-                <SectionBox label="🏫 Lớp học" items={classes} selectedId={selectedClassId} onSelect={setSelectedClassId} type="class" />
+                <SectionBox label="📅 Năm học" items={years} selectedId={selectedYearId} onSelect={setSelectedYearId} type="Chọn year" />
+                <SectionBox label="🏫 Lớp học" items={classes} selectedId={selectedClassId} onSelect={setSelectedClassId} type="Chọn class" />
                 <SectionBox label="📆 Tháng" items={months} selectedId={selectedMonthId} onSelect={setSelectedMonthId} type="month" />
                 {viewMode === 'subject' ? (
                   <SectionBox label="📚 Môn học" items={subjects} selectedId={selectedSubId} onSelect={setSelectedSubId} type="subject" />
