@@ -717,6 +717,7 @@ NỘI DUNG NHẬN XÉT:
 QUY TẮC THEO MỨC:
 - Mức T (Tốt):
   + Khen ngợi điểm nổi bậc.
+  + Không cần nêu hướng phát huy/khắc phục.
 - Mức Đ / H (Đạt / Hoàn thành):
   + Khen điểm đã làm được.
   + Đưa ra hướng phát huy
