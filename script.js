@@ -773,7 +773,10 @@ Hãy viết nhận xét cho từng học sinh theo đúng ID và trả về đú
                   body: JSON.stringify({ 
                     contents: [{ parts: [{ text: userInstruction }] }], 
                     systemInstruction: { parts: [{ text: systemPrompt }] },
-                    generationConfig: { responseMimeType: "application/json" }
+                    generationConfig: { 
+                responseMimeType: "application/json",
+                  temperature: 0.8
+                }
                   })
                 });
                 const result = await res.json();
