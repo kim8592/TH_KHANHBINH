@@ -1001,7 +1001,7 @@ IMPORTANT:
             </div>
             <div className="flex flex-col">
               <h1 className="text-xl md:text-2xl font-black uppercase leading-none tracking-tight">ĐÁNH GIÁ THƯỜNG XUYÊN</h1>
-              <span className="text-indigo-300 text-[11px] font-bold uppercase mt-1 italic tracking-wider">HỆ THỐNG ĐÁNH GIÁ TIỂU HỌC</span>
+              <span className="text-indigo-300 text-[11px] font-bold uppercase mt-1 italic tracking-wider">TỐI ƯU NHẬN XÉT HỌC SINH TIỂU HỌC BẰNG AI</span>
             </div>
           </div>
 
