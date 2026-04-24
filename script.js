@@ -718,7 +718,7 @@ RULES:
 6. Each comment should be 1-2 sentences
 
 LEVELS:
-- T (Tot/Excellent): Praise clearly, do NOT mention improvement
+- T (Tot/Excellent): Praise clearly
 - H or D (Hoan thanh/Complete or Dat/Achieved): Praise + must mention improvement direction
 - C (Chua dat/Not yet): State the problem + solution
 
