@@ -745,7 +745,7 @@ IMPORTANT:
         contents: [{ parts: [{ text: userInstruction }] }], 
         systemInstruction: { parts: [{ text: systemPrompt }] },
         generationConfig: { 
-          temperature: 0.7,
+          temperature: 0.5,
           maxOutputTokens: 4000
         }
       })
