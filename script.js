@@ -636,7 +636,55 @@ const App = () => {
     } finally { setIsSaving(false); }
   };
 
+  
   // ===== HELPER FUNCTIONS =====
+  function beautifyComment(level, comment) {
+  if (!comment) return comment;
+
+  comment = comment.trim();
+
+  // ===== MỨC T → khen tích cực hơn =====
+  if (level === "T") {
+    const boosts = [
+      " Em thể hiện rất tốt, đáng khen.",
+      " Em duy trì phong độ học tập rất tốt.",
+      " Em có nhiều điểm nổi bật, rất đáng ghi nhận."
+    ];
+
+    if (!/(rất tốt|nổi bật|đáng khen)/i.test(comment)) {
+      comment += boosts[Math.floor(Math.random() * boosts.length)];
+    }
+  }
+
+  // ===== MỨC H/D → khen + động viên nhẹ =====
+  if (level === "H" || level === "D") {
+    const encourages = [
+      " Em sẽ tiến bộ hơn nếu tiếp tục cố gắng.",
+      " Em hoàn toàn có thể làm tốt hơn trong thời gian tới.",
+      " Em có tiềm năng và sẽ tiến bộ rõ rệt nếu nỗ lực thêm."
+    ];
+
+    if (!/(tiến bộ|có thể|tiềm năng)/i.test(comment)) {
+      comment += encourages[Math.floor(Math.random() * encourages.length)];
+    }
+  }
+
+  // ===== MỨC C → tránh tiêu cực, thêm động viên =====
+  if (level === "C") {
+    const supports = [
+      " Em cần cố gắng hơn, chắc chắn sẽ tiến bộ.",
+      " Nếu kiên trì luyện tập, em sẽ cải thiện tốt hơn.",
+      " Em nên nỗ lực hơn để đạt kết quả tốt hơn."
+    ];
+
+    if (!/(tiến bộ|cải thiện)/i.test(comment)) {
+      comment += supports[Math.floor(Math.random() * supports.length)];
+    }
+  }
+
+  return comment;
+}
+
 function hasImprove(comment) {
   return /(cần|nên|cố gắng|khắc phục|rèn luyện|lưu ý)/i.test(comment);
 }
@@ -842,16 +890,9 @@ LƯU Ý:
         let comment = parts.slice(1).join('|||').trim();
         
         // Tìm học sinh theo tên
-        const student = allTargets.find(s => 
-          s.name === nameOrId || 
-          s.id === nameOrId ||
-          s.name.includes(nameOrId) ||
-          nameOrId.includes(s.name)
-        );
-        
-       if (student && comment && comment.length > 0) {
+        const student = allTargets.find(s => if (student && comment && comment.length > 0) {
 
-  // Xóa tên
+  // Xóa tên học sinh khỏi comment
   comment = comment.replace(new RegExp(`^${student.name}[,.\\s]*`, 'gi'), '');
   comment = comment.replace(new RegExp(`\\b${student.name}\\b`, 'gi'), '');
 
@@ -864,13 +905,12 @@ LƯU Ý:
 
   if (viewMode === 'subject' || systemMode === 'vnedu') {
     level = draft.level !== undefined ? draft.level : (d.level || "");
-  } else {
-    level = ""; // smas bạn có thể bỏ qua hoặc xử lý riêng
   }
 
-  // ===== FIX LEVEL (QUAN TRỌNG NHẤT) =====
+  // ===== FIX LEVEL =====
   comment = autoFixComment(level, comment);
 
+  // ===== CHECK ĐỘ DÀI =====
   if (comment.length > 10) {
     updates[student.id] = comment;
     successCount++;
