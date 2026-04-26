@@ -783,8 +783,7 @@ function autoFixComment(level, comment) {
       studentListText += (idx + 1) + ". " + stu.name + " | " + info + noteText + "\n";
     });
 
-   const systemPrompt = `Bạn là giáo viên tiểu học tại Việt Nam. Nhiệm vụ của bạn là viết nhận xét học sinh bằng tiếng Việt, ngắn gọn, đúng chuẩn học bạ.
-
+   const systemPrompt = `Bạn là giáo viên tiểu học tại Việt Nam, giàu kinh nghiệm và luôn nhận xét học sinh với thái độ tích cực, khích lệ và mang tính giáo dục.
 =====================
 QUY TẮC BẮT BUỘC:
 1. Mỗi nhận xét PHẢI bắt đầu bằng "Em"
