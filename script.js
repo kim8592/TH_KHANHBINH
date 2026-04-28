@@ -1200,7 +1200,7 @@ ${JSON.stringify(studentList, null, 2)}
                   <div className="relative">
                     <span className="absolute left-4 top-1/2 -translate-y-1/2 text-indigo-400 text-lg">✨</span>
                     <input className="w-full bg-slate-50 border-2 border-slate-300 rounded-xl pl-12 pr-4 py-4 text-sm font-semibold outline-none focus:border-indigo-500 transition-all" 
-                      placeholder="VD: hãy chọn 1 trong các nội dung sau: giải toán...tìm x...nhân...đặt tính...diện tích. khoảng 20 từ " 
+                      placeholder="VD: giải toán, tìm x, cộng có nhớ, diện tích. khoảng 20 từ " 
                       value={aiPrompt} 
                       onChange={e => setAiPrompt(e.target.value)}
                     />
