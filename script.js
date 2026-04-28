@@ -813,23 +813,23 @@ MỨC ĐÁNH GIÁ:
 
 Chỉ trả đúng định dạng.`;
 
-  ${aiPrompt ? `Hướng dẫn giáo viên: ${aiPrompt}
+ ${aiPrompt ? `Hướng dẫn: ${aiPrompt}
 
 Nếu có nhiều nội dung:
 - Mỗi học sinh chỉ chọn 1 nội dung.
-- Không luôn chọn nội dung đầu tiên.
-- Phân bổ đều các nội dung cho các học sinh khác nhau.
-- Tránh lặp cùng một nội dung liên tiếp.
+- Chọn luân phiên, không luôn lấy ý đầu.
+- Tránh lặp lại liên tiếp.
+
 ` : ""}Danh sách học sinh:
 ${studentListText}
 
-Viết nhận xét theo format:
+Viết theo format:
 [StudentName]|||[Comment]
 
 Yêu cầu:
-- Không nhắc tên trong nhận xét
-- Khác nhau cho mỗi học sinh
-- Không chung chung
+- Không nhắc tên
+- Mỗi học sinh khác nhau
+- Cụ thể
 - Đúng mức đánh giá`;
 
     console.log('📢 Calling Gemini API...');
