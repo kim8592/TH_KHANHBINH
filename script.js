@@ -672,6 +672,7 @@ if (level === "H" || level === "Đ") {
   }
 }
 
+
   // ===== MỨC C → tránh tiêu cực, thêm động viên =====
   if (level === "C") {
     const supports = [
@@ -803,7 +804,7 @@ QUY TẮC:
 
 MỨC ĐÁNH GIÁ:
 - T: Chỉ khen điểm nổi bậc.
-- H hoặc Đ: khen điểm nổi bậc, nêu hướng phát huy.
+- H hoặc Đ: khen điểm nổi bậc và nêu hướng phát huy.
 - C: Nêu vấn đề cụ thể + cách khắc phục cụ thể.
 
 Nếu sai mức đánh giá thì câu trả lời không hợp lệ.
