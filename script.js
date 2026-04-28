@@ -813,8 +813,13 @@ MỨC ĐÁNH GIÁ:
 
 Chỉ trả đúng định dạng.`;
 
+   const userInstruction = `${aiPrompt ? `Hướng dẫn giáo viên: ${aiPrompt}
 
-   const userInstruction = `${aiPrompt ? aiPrompt + "\n\n" : ""}Danh sách học sinh:
+Nếu hướng dẫn có nhiều nội dung, chỉ chọn 1 nội dung phù hợp nhất với từng học sinh để viết nhận xét.
+Không viết tất cả nội dung cùng lúc.
+Không gộp nhiều ý trong một câu.
+
+` : ""}Danh sách học sinh:
 ${studentListText}
 
 Viết nhận xét theo format:
