@@ -696,13 +696,14 @@ function autoFixComment(level, comment) {
 
   // T mà bị dính cải thiện → xóa
   if (level === "T" && hasImprove(comment)) {
-    comment = comment
-      .replace(/(tuy nhiên|nhưng|song)\s.*$/i, '')
-      .replace(/(cần|nên|cố gắng|khắc phục|rèn luyện|lưu ý)[^.]*\.?/gi, '')
-      .trim();
+  comment = comment
+    .replace(/(tuy nhiên|nhưng|song).*/i, '')
+    .replace(/\b(cần|nên|cố gắng|khắc phục|rèn luyện|lưu ý)\b/gi, '')
+    .replace(/\s+/g, ' ')
+    .trim();
 
-    if (!/[.!?]$/.test(comment)) comment += '.';
-  }
+  if (!/[.!?]$/.test(comment)) comment += '.';
+}
 
   // H/D mà thiếu cải thiện → thêm
   if ((level === "H" || level === "Đ") && !hasImprove(comment)) {
