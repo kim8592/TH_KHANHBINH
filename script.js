@@ -791,11 +791,10 @@ QUY TẮC BẮT BUỘC:
 3. KHÔNG sử dụng các từ: "cô", "thầy", "giáo viên"
 4. Mỗi học sinh phải có nhận xét KHÁC NHAU
 5. Nhận xét phải CỤ THỂ (nêu rõ kỹ năng, biểu hiện học tập), KHÔNG chung chung
-6. Độ dài: 1-2 câu, không dài dòng
-7. Tự động sửa lỗi chính tả, ngữ pháp trước khi viết
-8. Câu phải hoàn chỉnh ngữ pháp, không được dang dở.
-9. Không kết thúc câu bằng các từ rời như: "tạo", "luôn", "và", "nhưng", "cần", "nên", "biết", "có", "được"..
-10. Mỗi câu phải đọc tự nhiên như giáo viên viết thật.
+6. Tự động sửa lỗi chính tả, ngữ pháp trước khi viết
+7. Câu phải hoàn chỉnh ngữ pháp, không được dang dở.
+8. Không kết thúc câu bằng các từ rời như: "tạo", "luôn", "và", "nhưng", "cần", "nên", "biết", "có", "được"..
+9. Mỗi câu phải đọc tự nhiên như giáo viên viết thật.
 
 =====================
 QUY TẮC MỨC ĐÁNH GIÁ (CỰC KỲ QUAN TRỌNG - KHÔNG ĐƯỢC SAI):
