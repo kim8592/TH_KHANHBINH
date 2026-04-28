@@ -805,8 +805,8 @@ QUY TẮC:
 7. Câu văn tự nhiên như giáo viên viết thật.
 
 MỨC ĐÁNH GIÁ:
-- T: Chỉ khen, không góp ý; không chứa các từ: cần, nên, cố gắng, khắc phục, rèn luyện, lưu ý.
-- H hoặc Đ: Có 2 ý gồm khen + hướng cải thiện; phải chứa ít nhất 1 từ: cần, nên, cố gắng, rèn luyện.
+- T: Chỉ khen điểm nổi bậc.
+- H hoặc Đ: khen điểm nổi bậc, nêu hướng phát huy.
 - C: Nêu vấn đề cụ thể + cách khắc phục cụ thể.
 
 Nếu sai mức đánh giá thì câu trả lời không hợp lệ.
