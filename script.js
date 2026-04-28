@@ -666,8 +666,8 @@ if (level === "H" || level === "Đ") {
     " Em giữ vững tinh thần học tập này sẽ đạt nhiều kết quả tích cực."
   ];
 
-  // Nếu comment chưa có hướng phát huy thì mới thêm
-  if (!/(phát huy|tiến bộ|duy trì|rèn luyện|kết quả tốt hơn|hãy|thử sức|mạnh dạn hơn|tốt hơn nữa|luyện|ôn tập|tiếp tục|cải thiện)/i.test(comment)) {
+  // Nếu comment chưa có ý phát huy thì mới thêm
+  if (!/(phát huy|tiến bộ|duy trì|rèn luyện|kết quả tốt hơn|hãy|thử sức|mạnh dạn hơn|tốt hơn nữa)/i.test(comment)) {
     comment += encourages[Math.floor(Math.random() * encourages.length)];
   }
 }
@@ -717,14 +717,7 @@ function autoFixComment(level, comment) {
   if (!/[.!?]$/.test(comment)) comment += '.';
 }
 
-  // H/Đ mà thiếu cải thiện → thêm
-  if ((level === "H" || level === "Đ") && !hasImprove(comment)) {
-    comment += " Em cần cố gắng hơn để hoàn thiện kỹ năng.";
-  }
-
-  return comment;
-}
-
+ 
   // ===== AI GENERATION (GỌI 1 LẦN, DÙNG TEXT FORMAT) =====
     // ===== AI GENERATION (GỌI 1 LẦN, DÙNG TEXT FORMAT) =====
   const runAI = async () => {
