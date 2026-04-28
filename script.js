@@ -656,22 +656,19 @@ const App = () => {
     }
   }
 
- // ===== MỨC H/Đ → khen + hướng phát huy nhẹ nhàng =====
-if (level === "H" || level === "Đ") {
+ if (level === "H" || level === "Đ") {
   const encourages = [
-    " Em tiếp tục phát huy tinh thần học tập này sẽ tiến bộ hơn nữa.",
-    " Em duy trì sự cố gắng hiện tại sẽ đạt kết quả tốt hơn.",
-    " Em mạnh dạn hơn trong học tập sẽ thể hiện tốt hơn nữa.",
-    " Em tiếp tục rèn luyện đều đặn sẽ ngày càng tiến bộ.",
-    " Em giữ vững tinh thần học tập này sẽ đạt nhiều kết quả tích cực."
+    " Hãy thử sức với những nhiệm vụ khó hơn để phát huy khả năng của mình.",
+    " Hãy mạnh dạn khám phá thêm những dạng bài nâng cao hơn.",
+    " Hãy tiếp tục chinh phục những thử thách mới để tiến bộ hơn nữa.",
+    " Hãy phát huy thế mạnh hiện có trong những hoạt động đòi hỏi cao hơn.",
+    " Hãy tự tin thể hiện khả năng của mình ở những nhiệm vụ nâng cao hơn."
   ];
 
-  // Nếu comment chưa có ý phát huy thì mới thêm
-  if (!/(phát huy|tiến bộ|duy trì|rèn luyện|kết quả tốt hơn|hãy|thử sức|mạnh dạn hơn|tốt hơn nữa)/i.test(comment)) {
+  if (!/(hãy|thử sức|phát huy|khám phá|thử thách|nâng cao)/i.test(comment)) {
     comment += encourages[Math.floor(Math.random() * encourages.length)];
   }
 }
-
 
   // ===== MỨC C → tránh tiêu cực, thêm động viên =====
   if (level === "C") {
@@ -803,9 +800,9 @@ QUY TẮC:
 7. Câu văn tự nhiên như giáo viên viết thật.
 
 MỨC ĐÁNH GIÁ:
-- T: Chỉ khen điểm nổi bậc.
-- H hoặc Đ: khen điểm nổi bậc và nêu hướng phát huy.
-- C: Nêu vấn đề cụ thể + cách khắc phục cụ thể.
+- T: Chỉ khen điểm nổi bật, không góp ý.
+- H hoặc Đ: Khen điểm nổi bật và nêu hướng phát huy tích cực.
+- C: Khen nhẹ, nêu hạn chế cụ thể và cách khắc phục phù hợp.
 
 Nếu sai mức đánh giá thì câu trả lời không hợp lệ.
 
