@@ -657,7 +657,7 @@ const App = () => {
   }
 
   // ===== MỨC H/D → khen + động viên nhẹ =====
-  if (level === "H" || level === "D") {
+  if (level === "H" || level === "Đ") {
     const encourages = [
       " Em sẽ tiến bộ hơn nếu tiếp tục cố gắng.",
       " Em hoàn toàn có thể làm tốt hơn trong thời gian tới.",
@@ -705,7 +705,7 @@ function autoFixComment(level, comment) {
   }
 
   // H/D mà thiếu cải thiện → thêm
-  if ((level === "H" || level === "D") && !hasImprove(comment)) {
+  if ((level === "H" || level === "Đ") && !hasImprove(comment)) {
     comment += " Em cần cố gắng hơn để hoàn thiện kỹ năng.";
   }
 
