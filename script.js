@@ -793,6 +793,9 @@ QUY TẮC BẮT BUỘC:
 5. Nhận xét phải CỤ THỂ (nêu rõ kỹ năng, biểu hiện học tập), KHÔNG chung chung
 6. Độ dài: 1-2 câu, không dài dòng
 7. Tự động sửa lỗi chính tả, ngữ pháp trước khi viết
+8. Câu phải hoàn chỉnh ngữ pháp, không được dang dở.
+9. Không kết thúc câu bằng các từ rời như: "luôn", "và", "nhưng", "cần", "nên".
+10. Mỗi câu phải đọc tự nhiên như giáo viên viết thật.
 
 =====================
 QUY TẮC MỨC ĐÁNH GIÁ (CỰC KỲ QUAN TRỌNG - KHÔNG ĐƯỢC SAI):
