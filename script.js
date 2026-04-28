@@ -798,7 +798,7 @@ function autoFixComment(level, comment) {
 QUY TẮC:
 1. Mỗi nhận xét bắt đầu bằng "Em".
 2. Không nhắc tên học sinh.
-3. Không dùng các từ: cô, thầy, giáo viên.
+3. Không dùng các từ: cô, thầy, giáo viên, môn.
 4. Mỗi học sinh nhận xét khác nhau.
 5. Nhận xét cụ thể về kỹ năng, biểu hiện học tập; không chung chung.
 6. Tự sửa lỗi chính tả, ngữ pháp trước khi trả lời.
