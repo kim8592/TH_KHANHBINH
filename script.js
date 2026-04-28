@@ -636,93 +636,7 @@ const App = () => {
     } finally { setIsSaving(false); }
   };
 
-  
-  // ===== HELPER FUNCTIONS =====
-  function beautifyComment(level, comment) {
-  if (!comment) return comment;
-
-  comment = comment.trim();
-
-  // ===== MỨC T → khen tích cực hơn =====
-  if (level === "T") {
-    const boosts = [
-      " Em thể hiện rất tốt, đáng khen.",
-      " Em duy trì phong độ học tập rất tốt.",
-      " Em có nhiều điểm nổi bật, rất đáng ghi nhận."
-    ];
-
-    if (!/(rất tốt|nổi bật|đáng khen)/i.test(comment)) {
-      comment += boosts[Math.floor(Math.random() * boosts.length)];
-    }
-  }
-
-  // ===== MỨC H/D → khen + động viên nhẹ =====
-  if (level === "H" || level === "Đ") {
-    const encourages = [
-      " Em sẽ tiến bộ hơn nếu tiếp tục cố gắng.",
-      " Em hoàn toàn có thể làm tốt hơn trong thời gian tới.",
-      " Em có tiềm năng và sẽ tiến bộ rõ rệt nếu nỗ lực thêm."
-    ];
-
-    if (!/(tiến bộ|có thể|tiềm năng)/i.test(comment)) {
-      comment += encourages[Math.floor(Math.random() * encourages.length)];
-    }
-  }
-
-  // ===== MỨC C → tránh tiêu cực, thêm động viên =====
-  if (level === "C") {
-    const supports = [
-      " Em cần cố gắng hơn, chắc chắn sẽ tiến bộ.",
-      " Nếu kiên trì luyện tập, em sẽ cải thiện tốt hơn.",
-      " Em nên nỗ lực hơn để đạt kết quả tốt hơn."
-    ];
-
-    if (!/(tiến bộ|cải thiện)/i.test(comment)) {
-      comment += supports[Math.floor(Math.random() * supports.length)];
-    }
-  }
-
-  return comment;
-}
-
-function hasImprove(comment) {
-  return /(cần|nên|cố gắng|khắc phục|rèn luyện|lưu ý)/i.test(comment);
-}
-
-function autoFixComment(level, comment) {
-  if (!comment) return comment;
-
-  comment = comment.trim();
-
-  // T mà bị dính cải thiện → xóa
-  if (level === "T" && hasImprove(comment)) {
-
-  // Nếu có nhưng/tuy nhiên/song -> chỉ lấy vế trước
-  comment = comment.split(/\bnhưng\b|\btuy nhiên\b|\bsong\b/i)[0].trim();
-
-  // Nếu có từ cải thiện -> cắt tại vị trí đó
-  comment = comment.split(/\bcần\b|\bnên\b|\bcố gắng\b|\bkhắc phục\b|\brèn luyện\b|\blưu ý\b/i)[0].trim();
-
-  // Xóa dấu phẩy dư cuối câu
-  comment = comment.replace(/[,:;]\s*$/, '').trim();
-
-  // Nếu quá ngắn hoặc kết thúc bất thường -> thay câu mới
-  if (comment.split(' ').length < 5 || /(tạo|luôn|và|nhưng)$/i.test(comment)) {
-    comment = "Em học tập tích cực và thể hiện nhiều điểm nổi bật.";
-  }
-
-  if (!/[.!?]$/.test(comment)) comment += '.';
-}
-
-  // H/Đ mà thiếu cải thiện → thêm
-  if ((level === "H" || level === "Đ") && !hasImprove(comment)) {
-    comment += " Em cần cố gắng hơn để hoàn thiện kỹ năng.";
-  }
-
-  return comment;
-}
-
-  // ===== AI GENERATION - 2 LƯỢT (T+C TRƯỚC, RỒI H) =====
+   // ===== AI GENERATION - 2 LƯỢT (T+C TRƯỚC, RỒI H) =====
   const runAI = async () => {
   if (!isAuthValid) return;
   if (!apiKey) {
@@ -881,23 +795,16 @@ QUY TẮC BẮT BUỘC:
 7. Mỗi câu phải đọc tự nhiên như giáo viên viết thật.
 
 =====================
-QUY TẮC MỨC ĐÁNH GIÁ (CỰC KỲ QUAN TRỌNG - KHÔNG ĐƯỢC SAI):
-
-- Nếu mức = T:
-  → CHỈ được khen
-  → TUYỆT ĐỐI KHÔNG chứa các từ/cụm: "cần", "nên", "cố gắng", "khắc phục", "rèn luyện", "lưu ý"
-  → Không được có ý cải thiện dưới bất kỳ hình thức nào
-
-- Nếu mức = H hoặc Đ:
-  → BẮT BUỘC có 2 ý:
-     (1) Khen
-     (2) Hướng cải thiện rõ ràng
-  → PHẢI chứa ít nhất 1 trong các từ: "cần", "nên", "cố gắng", "rèn luyện"
-
-- Nếu mức = C:
-  → BẮT BUỘC có:
-     (1) Nêu vấn đề cụ thể
-     (2) Cách khắc phục cụ thể
+QUY TẮC THEO MỨC:
+- Mức T (Tốt):
+  + Khen rõ điểm nổi bật (ví dụ: tiếp thu nhanh, làm bài cẩn thận, tích cực phát biểu).
+- Mức Đ / H (Đạt / Hoàn thành):
+  + Khen điểm đã làm được.
+  + Đưa ra hướng phát huy
+- Mức C (Chưa đạt):
+  + Khen nhẹ 1 điểm (ví dụ: có cố gắng).
+  + Nêu hạn chế cụ thể (không nói chung chung).
+  + Đưa ra hướng cải thiện rõ ràng, dễ thực hiện.
 
 ❗ Nếu sai quy tắc mức đánh giá → câu trả lời bị coi là KHÔNG HỢP LỆ.
 
@@ -916,8 +823,18 @@ QUY TẮC MỨC ĐÁNH GIÁ (CỰC KỲ QUAN TRỌNG - KHÔNG ĐƯỢC SAI):
 
 KHÔNG thêm giải thích, KHÔNG thêm ký tự dư, chỉ trả về đúng JSON ở trên.`;
 
-    const userInstruction = `${aiPrompt ? "Yêu cầu bổ sung: " + aiPrompt + "\n\n" : ""}Danh sách học sinh (JSON):
-${JSON.stringify(studentList, null, 2)}`;
+    const userInstruction = `
+${aiPrompt ? "NỘI DUNG GIÁO VIÊN NHẬP:\n" + aiPrompt + "\n\n" : ""}
+
+YÊU CẦU BẮT BUỘC:
+- Với mỗi học sinh, chỉ chọn ĐÚNG 1 nội dung trong phần giáo viên nhập ở trên.
+- Mỗi học sinh nên dùng nội dung khác nhau nếu có thể.
+- Không gộp nhiều nội dung vào cùng một câu.
+- Viết tự nhiên, đúng văn phong giáo viên tiểu học.
+
+Danh sách học sinh (JSON):
+${JSON.stringify(studentList, null, 2)}
+`;
 
     console.log(`📢 Calling Gemini API for group ${groupType}...`);
 
