@@ -728,17 +728,18 @@ function autoFixComment(level, comment) {
   // ===================
   // MỨC T
   // ===================
- if (level === "T") {
+if (level === "T") {
 
-  // Nếu có góp ý -> chỉ lấy câu trước
+  // Nếu có góp ý -> chỉ lấy phần khen phía trước
   if (hasImprove(comment)) {
-
     comment = comment.split(/\bnhưng\b|\btuy nhiên\b|\bsong\b/i)[0].trim();
 
-    comment = comment.split(/\bcần\b|\bcố gắng\b|\bkhắc phục\b|\brèn luyện\b|\blưu ý\b|\bchú ý\b/i)[0].trim();
+    comment = comment.split(
+      /\bcần\b|\bcố gắng\b|\bkhắc phục\b|\brèn luyện\b|\blưu ý\b|\bchú ý\b/i
+    )[0].trim();
   }
 
-  // Nếu câu cụt hoặc vô nghĩa -> thay mới
+  // Nếu câu cụt hoặc vô nghĩa -> thay câu mới
   if (isBrokenSentence(comment)) {
     const goodList = [
       "Em học tập tích cực và thể hiện nhiều điểm nổi bật",
@@ -751,19 +752,27 @@ function autoFixComment(level, comment) {
     comment = goodList[Math.floor(Math.random() * goodList.length)];
   }
 
+  // Chuẩn hóa dấu câu trước khi nối thêm
+  comment = normalizeSentence(comment);
+
   // ===== THÊM CÂU KHEN CUỐI =====
   const praiseEnds = [
-    " Em rất đáng khen.",
-    " Em có nhiều cố gắng đáng ghi nhận.",
-    " Em thể hiện tinh thần học tập rất tốt.",
-    " Em đạt kết quả tốt, đáng biểu dương.",
-    " Em tiếp tục phát huy nhé."
+    "Rất đáng khen.",
+    "Có nhiều cố gắng đáng ghi nhận.",
+    "Thể hiện tinh thần học tập rất tốt.",
+    "Đạt kết quả tốt, đáng biểu dương.",
+    "Tiếp tục phát huy nhé."
   ];
 
+  // Nếu chưa có lời khen mạnh thì thêm
   if (!/(đáng khen|đáng ghi nhận|biểu dương|rất tốt)/i.test(comment)) {
-    comment += praiseEnds[Math.floor(Math.random() * praiseEnds.length)];
+    comment += " " + praiseEnds[Math.floor(Math.random() * praiseEnds.length)];
   }
+
+  // Chuẩn hóa lần cuối
+  comment = normalizeSentence(comment);
 }
+
 
 
   // ===================
