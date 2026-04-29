@@ -80,16 +80,14 @@ const normalizeMonthNameToNumber = (name) => {
 const filterComments = (text) => {
   if (!text) return text;
   const replacements = [
-   [/\b(cô|co|thầy|thay|giáo\s*viên)\b/gi, 'Em'],
-
-    [/(?:cô|co|thầy|thay|giáo\s*viên)\s+(?:muốn|yêu cầu|mong|hy vọng)\s+em/gi, 'Em hãy'],
-    [/(?:cô|co|thầy|thay|giáo\s*viên)\s+khuyến khích\s+em/gi, 'Em hãy'],
-    [/(?:cô|co|thầy|thay|giáo\s*viên)\s+tin\s+(?:rằng\s+)?em/gi, 'Em có khả năng'],
-    [/(?:cô|co|thầy|thay|giáo\s*viên)\s+(?:nói|bảo)\s+em/gi, 'Em'],
-    [/(?:cô|co|thầy|thay|giáo\s*viên)\s+hy vọng\s+em/gi, 'Em hãy'],
-    [/(?:cô|co|thầy|thay|giáo\s*viên)\s+nhận\s+xét/gi, ''],
-    [/(?:cô|co|thầy|thay|giáo\s*viên)\s+khen/gi, ''],
-    [/,\s*(?:cô|co|thầy|thay|giáo\s*viên)(?:\s+[^!.?]*)?(?=[!.?])/gi, ''],
+    [/(?:co|thầy|giáo\s+viên)\s+(?:muốn|yêu cầu|mong|hy vọng)\s+em/gi, 'Em hãy'],
+    [/(?:co|thầy|giáo\s+viên)\s+khuyến khích\s+em/gi, 'Em hãy'],
+    [/(?:co|thầy|giáo\s+viên)\s+tin\s+(?:rằng\s+)?em/gi, 'Em có khả năng'],
+    [/(?:co|thầy|giáo\s+viên)\s+(?:nói|bảo)\s+em/gi, 'Em'],
+    [/(?:co|thầy|giáo\s+viên)\s+hy vọng\s+em/gi, 'Em hãy'],
+    [/(?:co|thầy|giáo\s+viên)\s+nhận\s+xét/gi, ''],
+    [/(?:co|thầy|giáo\s+viên)\s+khen/gi, ''],
+    [/,\s*(?:co|thầy|giáo\s+viên)(?:\s+[^!.?]*)?(?=[!.?])/gi, ''],
   ];
 
   let filtered = text;
