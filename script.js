@@ -832,18 +832,23 @@ Mỗi dòng đúng format:
 
 KHÔNG thêm giải thích, KHÔNG thêm ký tự dư, chỉ trả về đúng định dạng trên.`;
 
+const userInstruction = `
+${aiPrompt ? "NỘI DUNG GIÁO VIÊN NHẬP:\n" + aiPrompt + "\n\n" : ""}
 
-   const userInstruction = `${aiPrompt ? "Yêu cầu bổ sung: " + aiPrompt + "\n\n" : ""}Danh sách học sinh:
+YÊU CẦU BẮT BUỘC:
+- Với mỗi học sinh, chỉ chọn ĐÚNG 1 nội dung trong phần giáo viên nhập ở trên.
+- Mỗi học sinh dùng nội dung khác nhau nếu có thể.
+- Không gộp nhiều nội dung vào cùng một câu.
+- Không nhắc tên trong nhận xét.
+- Viết cụ thể, tự nhiên, đúng văn phong giáo viên tiểu học.
+- Nếu có lỗi chính tả, tự hiểu và sửa lại.
+- Tuân thủ đúng mức đánh giá.
+
+DANH SÁCH HỌC SINH:
 ${studentListText}
 
-Viết nhận xét theo đúng định dạng:
+Định dạng xuất ra:
 [StudentName]|||[Comment]
-
-LƯU Ý:
-- Mỗi học sinh một nhận xét khác nhau
-- Không được nhắc tên trong nội dung nhận xét
-- Phải tuân thủ tuyệt đối quy tắc mức đánh giá
-- Không viết chung chung (tránh kiểu: chăm ngoan, học tốt, có tiến bộ...)
 `;
 
     console.log('📢 Calling Gemini API...');
