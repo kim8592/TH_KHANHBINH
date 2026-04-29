@@ -753,27 +753,10 @@ function autoFixComment(level, comment) {
       comment = goodList[Math.floor(Math.random() * goodList.length)];
     }
   }
-
-  // ===================
-  // MỨC H / Đ
-  // ===================
-  if (level === "H" || level === "Đ") {
-    if (!hasImprove(comment)) {
-      comment += " Em cần tiếp tục cố gắng để phát huy tốt hơn.";
-    }
-  }
-
-  // ===================
-  // MỨC C
-  // ===================
-  if (level === "C") {
-    if (!hasImprove(comment)) {
-      comment += " Em cần chăm chỉ rèn luyện thêm để tiến bộ hơn.";
-    }
-  }
-
-  return normalizeSentence(comment);
+  
+ return normalizeSentence(comment);
 }
+
 
 
   // ===== AI GENERATION (GỌI 1 LẦN, DÙNG TEXT FORMAT) =====
