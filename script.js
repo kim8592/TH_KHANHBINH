@@ -833,18 +833,23 @@ Mỗi dòng đúng format:
 KHÔNG thêm giải thích, KHÔNG thêm ký tự dư, chỉ trả về đúng định dạng trên.`;
 
 
-   const userInstruction = `${aiPrompt ? "Yêu cầu bổ sung: " + aiPrompt + "\n\n" : ""}Danh sách học sinh:
+   const userInstruction = `
+DANH SÁCH NỘI DUNG CÓ THỂ CHỌN (MỖI HỌC SINH CHỈ CHỌN 1):
+${aiPrompt ? aiPrompt : "Không có nội dung"}
+
+QUY TẮC CHỌN NỘI DUNG:
+- Mỗi học sinh chỉ chọn 1 nội dung trong danh sách giáo viên cung cấp
+- Phân bổ nội dung theo kiểu xen kẽ, tránh lặp liên tiếp
+- Nếu danh sách ít hơn số học sinh thì được phép lặp lại nhưng phải chia đều
+- Không tự tạo nội dung mới
+
+DANH SÁCH HỌC SINH:
 ${studentListText}
 
-Viết nhận xét theo đúng định dạng:
+ĐỊNH DẠNG TRẢ VỀ:
 [StudentName]|||[Comment]
-
-LƯU Ý:
-- Mỗi học sinh một nhận xét khác nhau
-- Không được nhắc tên trong nội dung nhận xét
-- Phải tuân thủ tuyệt đối quy tắc mức đánh giá
-- Không viết chung chung (tránh kiểu: chăm ngoan, học tốt, có tiến bộ...)
 `;
+
 
     console.log('📢 Calling Gemini API...');
 
