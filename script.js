@@ -831,26 +831,17 @@ ${studentListText}
 
   comment = filterComments(comment).trim();
 
-  // ===== LẤY LEVEL =====
-  const d = studentData[student.id] || {};
-  const draft = draftData[student.id] || {};
-  let level = "";
+// ===== CHUẨN HÓA COMMENT =====
+comment = normalizeSentence(comment);
 
-  if (viewMode === 'subject' || systemMode === 'vnedu') {
-    level = draft.level !== undefined ? draft.level : (d.level || "");
-  }
-
-  // ===== FIX LEVEL =====
-  comment = autoFixComment(level, comment);
-
-  // ===== CHECK ĐỘ DÀI =====
-  if (comment.length > 10) {
-    updates[student.id] = comment;
-    successCount++;
-  }
+// ===== CHECK ĐỘ DÀI =====
+if (comment.length > 10) {
+  updates[student.id] = comment;
+  successCount++;
 }
-      }
-    });
+}
+}
+  });
 
     if (successCount === 0) {
       console.error('Cannot parse comments:', responseText);
