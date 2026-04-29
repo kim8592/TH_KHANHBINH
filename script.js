@@ -771,11 +771,29 @@ function autoFixComment(level, comment) {
   // =====================
   if (level === "H" || level === "Đ") {
 
-    if (!hasImprove(comment)) {
-      const topic = detectTopic(comment);
-      comment += " " + getSmartImprove(topic, level);
-    }
+  const topic = detectTopic(comment);
+
+  // Nếu chỉ góp ý mà chưa có khen
+  if (hasImprove(comment) && !hasPraise(comment)) {
+
+    const praiseMap = {
+      math: "Em đã có cố gắng trong học toán.",
+      write: "Em đã có tiến bộ trong luyện viết.",
+      read: "Em đọc bài khá tốt.",
+      confidence: "Em đã có cố gắng trong học tập.",
+      attitude: "Em có thái độ học tập tốt.",
+      general: "Em đã có nhiều cố gắng."
+    };
+
+    comment = praiseMap[topic] + " " + comment;
   }
+
+  // Nếu chưa có góp ý
+  else if (!hasImprove(comment)) {
+    comment += " " + getSmartImprove(topic);
+  }
+}
+
 
   // =====================
   // MỨC C
