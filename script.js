@@ -635,6 +635,21 @@ const App = () => {
       showToast('Lỗi lưu dữ liệu: ' + error.message, 'error', '❌', 4000);
     } finally { setIsSaving(false); }
   };
+function normalizeSentence(text) {
+  if (!text) return "";
+
+  text = text.replace(/\s+/g, " ").trim();
+
+  // bỏ dấu phẩy cuối
+  text = text.replace(/[,:;]\s*$/, "").trim();
+
+  // thêm dấu chấm cuối câu
+  if (!/[.!?]$/.test(text)) {
+    text += ".";
+  }
+
+  return text;
+}
 
   
   // ===== AI GENERATION (GỌI 1 LẦN, DÙNG TEXT FORMAT) =====
