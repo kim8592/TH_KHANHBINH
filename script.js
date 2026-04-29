@@ -637,7 +637,7 @@ const App = () => {
   };
 
   
- // ===== HELPER FUNCTIONS =====
+// ===== HELPER FUNCTIONS =====
 
 function beautifyComment(level, comment) {
   if (!comment) return comment;
@@ -660,12 +660,13 @@ function beautifyComment(level, comment) {
   // ===== MỨC H / Đ =====
   if (level === "H" || level === "Đ") {
     const encourages = [
-      " Em sẽ tiến bộ hơn nếu tiếp tục cố gắng.",
-      " Em hoàn toàn có thể làm tốt hơn trong thời gian tới.",
-      " Em có tiềm năng và sẽ tiến bộ rõ rệt nếu nỗ lực thêm."
+      " Em tiếp tục phát huy khả năng này sẽ tiến bộ hơn nữa.",
+      " Em có thể thử sức với những nhiệm vụ khó hơn để phát triển thêm.",
+      " Em duy trì phong độ hiện tại sẽ đạt kết quả tốt hơn.",
+      " Em tiếp tục rèn luyện để nâng cao năng lực của mình."
     ];
 
-    if (!/(tiến bộ|có thể|tiềm năng)/i.test(comment)) {
+    if (!hasDevelopmentIdea(comment)) {
       comment += encourages[Math.floor(Math.random() * encourages.length)];
     }
   }
@@ -673,12 +674,13 @@ function beautifyComment(level, comment) {
   // ===== MỨC C =====
   if (level === "C") {
     const supports = [
-      " Em cần cố gắng hơn, chắc chắn sẽ tiến bộ.",
-      " Nếu kiên trì luyện tập, em sẽ cải thiện tốt hơn.",
-      " Em nên nỗ lực hơn để đạt kết quả tốt hơn."
+      " Em chưa đạt yêu cầu ở một số nội dung, cần luyện tập thêm để cải thiện.",
+      " Em còn hạn chế ở một số kỹ năng, cần chú ý rèn luyện thêm.",
+      " Em cần luyện tập thêm để nắm vững kiến thức và tiến bộ hơn.",
+      " Em nên cố gắng hơn trong quá trình học để cải thiện kết quả."
     ];
 
-    if (!/(tiến bộ|cải thiện)/i.test(comment)) {
+    if (!hasDevelopmentIdea(comment)) {
       comment += supports[Math.floor(Math.random() * supports.length)];
     }
   }
@@ -686,12 +688,6 @@ function beautifyComment(level, comment) {
   return normalizeSentence(comment);
 }
 
-// =======================
-// KIỂM TRA CÓ GÓP Ý KHÔNG
-// =======================
-function hasImprove(comment) {
-  return /(cần|nên|cố gắng|khắc phục|rèn luyện|lưu ý|chú ý|tiếp tục phát huy|phát huy thêm|duy trì|luyện thêm|mạnh dạn hơn|tự tin hơn|tiến bộ hơn)/i.test(comment);
-}
 
 // =======================
 // CHUẨN HÓA CÂU
@@ -707,6 +703,15 @@ function normalizeSentence(text) {
   return text;
 }
 
+
+// =======================
+// KIỂM TRA HƯỚNG PHÁT TRIỂN (QUAN TRỌNG)
+// =======================
+function hasDevelopmentIdea(comment) {
+  return /(cần|nên|hãy|tiếp tục|phát huy|duy trì|thử sức|rèn luyện|luyện|ôn|tăng|cải thiện|nâng cao|hoàn thành|tiến bộ|tốt hơn|khả năng|tự tin|mạnh dạn|phát triển|thử|làm tốt hơn|phát huy hơn)/i.test(comment);
+}
+
+
 // =======================
 // KIỂM TRA CÂU CỤT
 // =======================
@@ -717,8 +722,9 @@ function isBrokenSentence(text) {
   );
 }
 
+
 // =======================
-// AUTO FIX COMMENT
+// AUTO FIX COMMENT (CHỐNG LẶP + LÀM MƯỢT)
 // =======================
 function autoFixComment(level, comment) {
   if (!comment) return comment;
@@ -728,76 +734,61 @@ function autoFixComment(level, comment) {
   // ===================
   // MỨC T
   // ===================
-if (level === "T") {
+  if (level === "T") {
 
-  // Nếu có góp ý -> chỉ lấy phần khen phía trước
-  if (hasImprove(comment)) {
-    comment = comment.split(/\bnhưng\b|\btuy nhiên\b|\bsong\b/i)[0].trim();
+    // bỏ phần góp ý nếu có
+    if (hasDevelopmentIdea(comment)) {
+      comment = comment.split(/\bnhưng\b|\btuy nhiên\b|\bsong\b/i)[0].trim();
 
-    comment = comment.split(
-      /\bcần\b|\bcố gắng\b|\bkhắc phục\b|\brèn luyện\b|\blưu ý\b|\bchú ý\b/i
-    )[0].trim();
+      comment = comment.split(
+        /\bcần\b|\bcố gắng\b|\bkhắc phục\b|\brèn luyện\b|\blưu ý\b|\bchú ý\b/i
+      )[0].trim();
+    }
+
+    if (isBrokenSentence(comment)) {
+      const goodList = [
+        "Em học tập tích cực và thể hiện nhiều điểm nổi bật",
+        "Em chăm học và hoàn thành tốt nhiệm vụ học tập",
+        "Em có tinh thần học tập tốt và rất đáng khen",
+        "Em tiếp thu bài nhanh và thực hiện nhiệm vụ hiệu quả",
+        "Em luôn nỗ lực và đạt kết quả đáng khen"
+      ];
+
+      comment = goodList[Math.floor(Math.random() * goodList.length)];
+    }
   }
-
-  // Nếu câu cụt hoặc vô nghĩa -> thay câu mới
-  if (isBrokenSentence(comment)) {
-    const goodList = [
-      "Em học tập tích cực và thể hiện nhiều điểm nổi bật",
-      "Em chăm học và hoàn thành tốt nhiệm vụ học tập",
-      "Em có tinh thần học tập tốt và thật đáng khen",
-      "Em tiếp thu bài nhanh và thực hiện nhiệm vụ hiệu quả",
-      "Em luôn nỗ lực và đạt kết quả đáng khen"
-    ];
-
-    comment = goodList[Math.floor(Math.random() * goodList.length)];
-  }
-
-  // Chuẩn hóa dấu câu trước khi nối thêm
-  comment = normalizeSentence(comment);
-
-  // ===== THÊM CÂU KHEN CUỐI =====
-  const praiseEnds = [
-    "Rất đáng khen.",
-    "Có nhiều cố gắng đáng ghi nhận.",
-    "Thể hiện tinh thần học tập rất tốt.",
-    "Đạt kết quả tốt, đáng biểu dương.",
-    "Tiếp tục phát huy nhé."
-  ];
-
-  // Nếu chưa có lời khen mạnh thì thêm
-  if (!/(đáng khen|đáng ghi nhận|biểu dương|rất tốt)/i.test(comment)) {
-    comment += " " + praiseEnds[Math.floor(Math.random() * praiseEnds.length)];
-  }
-
-  // Chuẩn hóa lần cuối
-  comment = normalizeSentence(comment);
-}
-
 
 
   // ===================
   // MỨC H / Đ
   // ===================
   if (level === "H" || level === "Đ") {
-  if (!hasImprove(comment)) {
-    const tips = [
-      " Em hãy tiếp tục cố gắng để phát huy tốt hơn.",
-      " Em nên duy trì nỗ lực để tiến bộ rõ hơn.",
-      " Em hãy rèn thêm kỹ năng để đạt kết quả cao hơn.",
-      " Em tiếp tục cố gắng để phát huy khả năng của mình."
-    ];
+    if (!hasDevelopmentIdea(comment)) {
+      const tips = [
+        " Em tiếp tục phát huy khả năng này sẽ tiến bộ hơn nữa.",
+        " Em có thể thử sức với những nhiệm vụ khó hơn để phát triển.",
+        " Em duy trì sự cố gắng hiện tại sẽ đạt kết quả tốt hơn.",
+        " Em tiếp tục rèn luyện để nâng cao năng lực."
+      ];
 
-    comment += tips[Math.floor(Math.random() * tips.length)];
+      comment += tips[Math.floor(Math.random() * tips.length)];
+    }
   }
-}
 
 
   // ===================
   // MỨC C
   // ===================
   if (level === "C") {
-    if (!hasImprove(comment)) {
-      comment += " Em cần chăm chỉ rèn luyện thêm để tiến bộ hơn.";
+    if (!hasDevelopmentIdea(comment)) {
+      const tips = [
+        " Em còn một số hạn chế, cần luyện tập thêm để cải thiện.",
+        " Em cần chú ý hơn trong học tập để tiến bộ dần.",
+        " Em nên cố gắng hơn để nắm vững kiến thức cơ bản.",
+        " Em cần rèn luyện thêm để cải thiện kết quả học tập."
+      ];
+
+      comment += tips[Math.floor(Math.random() * tips.length)];
     }
   }
 
