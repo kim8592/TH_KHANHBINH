@@ -940,7 +940,7 @@ ${studentListText}
         systemInstruction: { parts: [{ text: systemPrompt }] },
         generationConfig: { 
           temperature: 0.3,
-          maxOutputTokens: 6000
+          maxOutputTokens: 1500
         }
       })
     });
