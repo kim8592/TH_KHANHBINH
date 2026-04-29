@@ -637,145 +637,6 @@ const App = () => {
   };
 
   
- // ===== HELPER FUNCTIONS =====
-
-function beautifyComment(level, comment) {
-  if (!comment) return comment;
-
-  comment = normalizeSentence(comment);
-
-  // ===== MỨC T =====
-  if (level === "T") {
-    const boosts = [
-      " Em thể hiện rất tốt, đáng khen.",
-      " Em duy trì phong độ học tập rất tốt.",
-      " Em có nhiều điểm nổi bật, rất đáng ghi nhận."
-    ];
-
-    if (!/(rất tốt|nổi bật|đáng khen|đáng ghi nhận)/i.test(comment)) {
-      comment += boosts[Math.floor(Math.random() * boosts.length)];
-    }
-  }
-
-  // ===== MỨC H / Đ =====
-  if (level === "H" || level === "Đ") {
-    const encourages = [
-      " Em sẽ tiến bộ hơn nếu tiếp tục cố gắng.",
-      " Em hoàn toàn có thể làm tốt hơn trong thời gian tới.",
-      " Em có tiềm năng và sẽ tiến bộ rõ rệt nếu nỗ lực thêm."
-    ];
-
-    if (!/(tiến bộ|có thể|tiềm năng)/i.test(comment)) {
-      comment += encourages[Math.floor(Math.random() * encourages.length)];
-    }
-  }
-
-  // ===== MỨC C =====
-  if (level === "C") {
-    const supports = [
-      " Em cần cố gắng hơn, chắc chắn sẽ tiến bộ.",
-      " Nếu kiên trì luyện tập, em sẽ cải thiện tốt hơn.",
-      " Em nên nỗ lực hơn để đạt kết quả tốt hơn."
-    ];
-
-    if (!/(tiến bộ|cải thiện)/i.test(comment)) {
-      comment += supports[Math.floor(Math.random() * supports.length)];
-    }
-  }
-
-  return normalizeSentence(comment);
-}
-
-// =======================
-// KIỂM TRA CÓ GÓP Ý KHÔNG
-// =======================
-function hasImprove(comment) {
-  return /(cần|cố gắng|khắc phục|rèn luyện|lưu ý|chú ý)/i.test(comment);
-}
-
-// =======================
-// CHUẨN HÓA CÂU
-// =======================
-function normalizeSentence(text) {
-  if (!text) return "";
-
-  text = text.replace(/\s+/g, " ").trim();
-  text = text.replace(/[,:;]\s*$/, "").trim();
-
-  if (!/[.!?]$/.test(text)) text += ".";
-
-  return text;
-}
-
-// =======================
-// KIỂM TRA CÂU CỤT
-// =======================
-function isBrokenSentence(text) {
-  return (
-    text.split(" ").length < 5 ||
-    /(và|nhưng|song|giúp|làm cho|thể hiện|trở|tạo|để)$/i.test(text)
-  );
-}
-
-// =======================
-// AUTO FIX COMMENT
-// =======================
-function autoFixComment(level, comment) {
-  if (!comment) return comment;
-
-  comment = comment.trim();
-
-  // ===================
-  // MỨC T
-  // ===================
-  if (level === "T") {
-
-    // Nếu có góp ý -> chỉ lấy câu trước
-    if (hasImprove(comment)) {
-
-      // Chỉ cắt tại từ nối góp ý
-      comment = comment.split(/\bnhưng\b|\btuy nhiên\b|\bsong\b/i)[0].trim();
-
-      // Chỉ cắt các từ thật sự góp ý
-      comment = comment.split(/\bcần\b|\bcố gắng\b|\bkhắc phục\b|\brèn luyện\b|\blưu ý\b|\bchú ý\b/i)[0].trim();
-    }
-
-    // Nếu câu cụt hoặc vô nghĩa -> thay mới
-    if (isBrokenSentence(comment)) {
-      const goodList = [
-        "Em học tập tích cực và thể hiện nhiều điểm nổi bật",
-        "Em chăm học và hoàn thành tốt nhiệm vụ học tập",
-        "Em có tinh thần học tập tốt và tiến bộ rõ rệt",
-        "Em tiếp thu bài nhanh và thực hiện nhiệm vụ hiệu quả",
-        "Em luôn nỗ lực và đạt kết quả đáng khen"
-      ];
-
-      comment = goodList[Math.floor(Math.random() * goodList.length)];
-    }
-  }
-
-  // ===================
-  // MỨC H / Đ
-  // ===================
-  if (level === "H" || level === "Đ") {
-    if (!hasImprove(comment)) {
-      comment += " Em cần tiếp tục cố gắng để phát huy tốt hơn.";
-    }
-  }
-
-  // ===================
-  // MỨC C
-  // ===================
-  if (level === "C") {
-    if (!hasImprove(comment)) {
-      comment += " Em cần chăm chỉ rèn luyện thêm để tiến bộ hơn.";
-    }
-  }
-
-  return normalizeSentence(comment);
-}
-
-
   // ===== AI GENERATION (GỌI 1 LẦN, DÙNG TEXT FORMAT) =====
     // ===== AI GENERATION (GỌI 1 LẦN, DÙNG TEXT FORMAT) =====
   const runAI = async () => {
@@ -792,20 +653,17 @@ function autoFixComment(level, comment) {
     const draft = draftData[s.id] || {};
     const comment = draft.comment !== undefined ? draft.comment : (d.comment || "");
     if (comment) return false;
-    if (viewMode === 'subject') {
-      const level = draft.level !== undefined ? draft.level : (d.level || "");
-      return !!level;
-    } else if (systemMode === 'vnedu' && viewMode !== 'subject') {
-      const level = draft.level !== undefined ? draft.level : (d.level || "");
-      return !!level;
-    } else if (systemMode === 'smas' && viewMode !== 'subject') {
-      const list = viewMode === 'quality' ? QUALITY_CRITERIA : (viewMode === 'competency' ? GENERAL_COMPETENCIES : SPECIFIC_COMPETENCIES);
-      return list.some(c => {
-        const level = draft[`level_${c.id}`] !== undefined ? draft[`level_${c.id}`] : (d[`level_${c.id}`] || "");
-        return !!level;
-      });
-    }
-    return false;
+   if (viewMode === 'subject') {
+  return true;
+
+} else if (systemMode === 'vnedu' && viewMode !== 'subject') {
+  return true;
+
+} else if (systemMode === 'smas' && viewMode !== 'subject') {
+  return true;
+}
+
+return true;
   });
 
   if (!allTargets.length) { 
