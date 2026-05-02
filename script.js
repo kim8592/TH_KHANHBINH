@@ -133,7 +133,7 @@ const processComment = (comment, level) => {
   if (level === "T") {
    if (hasDevelopment) {
   comment = comment.replace(
-    /\s*(nhưng|tuy nhiên|song|cần|cố gắng|khắc phục|rèn luyện).*/i,
+    /\s*(nhưng|nên|tuy nhiên|song|cần|cố gắng|khắc phục|rèn luyện).*/i,
     ""
   ).trim();
 
