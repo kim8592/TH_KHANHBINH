@@ -178,6 +178,8 @@ if (hasDevelopment) {
   } else if (level === "H" || level === "Đ") {
 
   // hạ tone nếu quá mạnh như mức T
+  comment = comment.replace(/\bcần\b/gi, "tiếp tục");
+  comment = comment.replace(/\bCần\b/g, "Tiếp tục");
   comment = comment.replace(/rất tốt/gi, "tốt");
   comment = comment.replace(/xuất sắc/gi, "tốt");
   comment = comment.replace(/nổi bật/gi, "đáng ghi nhận");
@@ -185,7 +187,7 @@ if (hasDevelopment) {
   comment = comment.replace(/rất chính xác/gi, "khá chính xác");
 
   // nếu chưa có hướng phát huy thì thêm
-  if (!/nên|tiếp tục|phát huy|rèn luyện|cố gắng/i.test(comment)) {
+  if (!/tiếp tục|phát huy|rèn luyện|cố gắng|duy trì|nâng cao/i.test(comment)) {
 
     const encourages = [
       "Em tiếp tục phát huy nhé.",
