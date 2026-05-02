@@ -222,7 +222,7 @@ if (hasDevelopment) {
   comment = comment.replace(/^Em làm tốt/gi, "Em đã có cố gắng trong");
   comment = comment.replace(/^Em làm/gi, "Em đã có cố gắng thực hiện");
   comment = comment.replace(/^Em có/gi, "Em bước đầu có cố gắng");
-  comment = comment.replace(/^Em đã/gi, "Em đã có cố gắng");
+  comment = comment.replace(/^Em đã/gi, "Em đã có cố gắng trong");
 
   // =========================
   // 2. HẠ TONE (tránh quá tích cực như H)
@@ -241,6 +241,8 @@ if (hasDevelopment) {
 
   // chống lặp "cố gắng cố gắng"
   comment = comment.replace(/cố gắng\s+cố gắng/gi, "cố gắng");
+  comment = comment.replace(/(có\s+)?sự\s+cố gắng/gi, "cố gắng");
+  comment = comment.replace(/cố gắng\s+(có\s+)?cố gắng/gi, "cố gắng");
 
   // =========================
   // 4. THÊM GÓP Ý CUỐI (nếu chưa có)
