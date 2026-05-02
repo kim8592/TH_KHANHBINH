@@ -241,6 +241,9 @@ if (hasDevelopment) {
   comment = comment.replace(/trong thể hiện/gi, "trong việc thể hiện");
   comment = comment.replace(/cố gắng có sự cố gắng/gi, "có cố gắng");
   comment = comment.replace(/có sự cố gắng/gi, "có cố gắng");
+  comment = comment.replace(/cố gắng có tiến bộ/gi, "cố gắng, có tiến bộ");
+  comment = comment.replace(/có cố gắng có tiến bộ/gi, "có cố gắng, có tiến bộ");
+
 
   // chống lặp từ
   comment = comment.replace(/cố gắng\s+cố gắng/gi, "cố gắng");
