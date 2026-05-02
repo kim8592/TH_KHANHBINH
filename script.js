@@ -131,11 +131,16 @@ const processComment = (comment, level) => {
 
   // Xử lý theo mức
   if (level === "T") {
- if (hasDevelopment) {
+if (hasDevelopment) {
   comment = comment.replace(
-    /[\s,.]*(nhưng|tuy nhiên|song|cần|nên|cố gắng|khắc phục|rèn luyện).*/i,
+    /[\s,.]*(nhưng|tuy nhiên|song|cần|nên|thêm|tiếp tục|chú ý|cố gắng|khắc phục|rèn luyện).*/i,
     ""
   ).trim();
+
+  // dọn câu dang dở
+  comment = comment.replace(/\b(và|luôn|nhưng|cũng|đều)\s*$/i, "");
+  comment = comment.replace(/[,:;]\s*$/g, "");
+  comment = comment.trim();
 
   if (!/[.!?]$/.test(comment)) comment += ".";
 }
