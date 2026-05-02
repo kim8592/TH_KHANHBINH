@@ -219,7 +219,7 @@ if (hasDevelopment) {
   // =========================
   // 1. MỞ ĐẦU (khen nhẹ, tự nhiên)
   // =========================
-  comment = comment.replace(/^Em làm tốt/gi, "Em đã có cố gắng trong quá trình thực hiện");
+  comment = comment.replace(/^Em làm tốt/gi, "Em có cố gắng trong quá trình thực hiện");
   comment = comment.replace(/^Em làm/gi, "Em đã có cố gắng thực hiện");
   comment = comment.replace(/^Em có/gi, "Em bước đầu có cố gắng");
   comment = comment.replace(/^Em đã/gi, "Em đã có cố gắng");
