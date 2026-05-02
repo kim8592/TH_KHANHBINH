@@ -212,7 +212,6 @@ if (hasDevelopment) {
 
     comment += ". " + endText;
   }
-}
 
 
   } else if (level === "C") {
