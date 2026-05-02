@@ -180,14 +180,23 @@ if (hasDevelopment) {
   // =========================
   // 1. HẠ TONE
   // =========================
-  comment = comment.replace(/rất tốt/gi, "tốt");
-  comment = comment.replace(/xuất sắc/gi, "tốt");
-  comment = comment.replace(/nổi bật/gi, "đáng ghi nhận");
-  comment = comment.replace(/tiến bộ rõ rệt/gi, "có tiến bộ");
-  comment = comment.replace(/rất chính xác/gi, "khá chính xác");
+  comment = comment
+    .replace(/rất tốt/gi, "tốt")
+    .replace(/xuất sắc/gi, "tốt")
+    .replace(/nổi bật/gi, "đáng ghi nhận")
+    .replace(/tiến bộ rõ rệt/gi, "có tiến bộ")
+    .replace(/rất chính xác/gi, "khá chính xác");
 
   // =========================
-  // 2. CHỈ THÊM "TIẾP TỤC" KHI CẦN THIẾT (AN TOÀN)
+  // 2. XOÁ HOÀN TOÀN "TUY NHIÊN" (GỘP CÂU CHO MƯỢT)
+  // =========================
+  comment = comment
+    .replace(/,\s*tuy nhiên,?\s*/gi, ". ")
+    .replace(/\.\s*tuy nhiên,?\s*/gi, ". ")
+    .replace(/\s+tuy nhiên,?\s*/gi, ". ");
+
+  // =========================
+  // 3. CHỈ THÊM "TIẾP TỤC" KHI CẦN THIẾT (AN TOÀN)
   // =========================
   comment = comment.replace(
     /(\.|,|\s)cần\s(?=rèn|phát huy|chú ý|luyện|cố gắng)/gi,
@@ -195,15 +204,18 @@ if (hasDevelopment) {
   );
 
   // =========================
-  // 3. CHỐNG LẶP "TIẾP TỤC"
+  // 4. CHỐNG LẶP "TIẾP TỤC"
   // =========================
   comment = comment.replace(/tiếp tục\s+tiếp tục/gi, "tiếp tục");
   comment = comment.replace(/Tiếp tục\s+tiếp tục/gi, "Tiếp tục");
 
   // =========================
-  // 4. THÊM HƯỚNG PHÁT HUY NẾU CHƯA CÓ
+  // 5. THÊM HƯỚNG PHÁT HUY NẾU CHƯA CÓ
   // =========================
-  if (!/tiếp tục|phát huy|rèn luyện|cố gắng|duy trì|nâng cao/i.test(comment)) {
+  const hasDirection =
+    /(tiếp tục|phát huy|rèn luyện|cố gắng|duy trì|nâng cao)/i.test(comment);
+
+  if (!hasDirection) {
 
     const encourages = [
       "Em tiếp tục phát huy nhé.",
@@ -221,6 +233,18 @@ if (hasDevelopment) {
 
     comment += ". " + endText;
   }
+
+  // =========================
+  // 6. CHUẨN HOÁ HOA SAU DẤU CÂU
+  // =========================
+  comment = comment.replace(
+    /([.!?]\s*)([a-zà-ỹ])/g,
+    (m, p1, p2) => p1 + p2.toUpperCase()
+  );
+
+  comment = comment.charAt(0).toUpperCase() + comment.slice(1);
+}
+
 
 
  } else if (level === "C") {
