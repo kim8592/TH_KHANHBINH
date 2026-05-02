@@ -178,7 +178,7 @@ if (hasDevelopment) {
   } else if (level === "H" || level === "Đ") {
 
   // hạ tone nếu quá mạnh như mức T
-  comment = comment.replace(/\bcần\b/gi, "tiếp tục");
+  comment = comment.replace(/\bcần\b/gi, "Tiếp tục");
   comment = comment.replace(/\bCần\b/g, "Tiếp tục");
   comment = comment.replace(/rất tốt/gi, "tốt");
   comment = comment.replace(/xuất sắc/gi, "tốt");
