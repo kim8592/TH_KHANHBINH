@@ -144,8 +144,27 @@ const processComment = (comment, level) => {
       comment = goodList[Math.floor(Math.random() * goodList.length)];
     }
     if (!/rất tốt|nổi bật|đáng khen|đáng ghi nhận/i.test(comment)) {
-      comment += " Em thể hiện rất tốt, đáng khen.";
-    }
+
+  const praiseEnds = [
+    "thể hiện rất tốt, đáng khen.",
+    "có nhiều cố gắng đáng ghi nhận.",
+    "cho thấy sự tiến bộ rõ rệt.",
+    "là tấm gương học tập tốt.",
+    "xứng đáng được tuyên dương.",
+    "đem lại kết quả học tập tích cực.",
+    "thể hiện tinh thần học tập rất tốt.",
+    "có ý thức học tập đáng biểu dương.",
+    "đạt kết quả nổi bật trong học tập.",
+    "có nhiều nỗ lực rất đáng khen."
+  ];
+
+  comment = comment.replace(/[.!?]\s*$/, "");
+
+  const endText = praiseEnds[Math.floor(Math.random() * praiseEnds.length)];
+
+  comment += ", " + endText;
+}
+
   } else if (level === "H" || level === "Đ") {
     if (!hasDevelopment) {
       if (isPraise) {
