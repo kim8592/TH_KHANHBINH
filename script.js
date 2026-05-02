@@ -217,15 +217,15 @@ if (hasDevelopment) {
  } else if (level === "C") {
 
   // =========================
-  // 1. MỞ ĐẦU (khen nhẹ, tránh giống H)
+  // 1. MỞ ĐẦU (khen nhẹ, tự nhiên)
   // =========================
-  comment = comment.replace(/^Em làm tốt/gi, "Em đã có cố gắng trong");
+  comment = comment.replace(/^Em làm tốt/gi, "Em đã có cố gắng trong quá trình thực hiện");
   comment = comment.replace(/^Em làm/gi, "Em đã có cố gắng thực hiện");
   comment = comment.replace(/^Em có/gi, "Em bước đầu có cố gắng");
-  comment = comment.replace(/^Em đã/gi, "Em đã có cố gắng trong");
+  comment = comment.replace(/^Em đã/gi, "Em đã có cố gắng");
 
   // =========================
-  // 2. HẠ TONE (tránh quá tích cực như H)
+  // 2. HẠ TONE (tránh giống H)
   // =========================
   comment = comment.replace(/rất tốt/gi, "đạt yêu cầu cơ bản");
   comment = comment.replace(/xuất sắc/gi, "đã có tiến bộ");
@@ -235,26 +235,30 @@ if (hasDevelopment) {
   comment = comment.replace(/\bchính xác\b/gi, "tương đối chính xác");
 
   // =========================
-  // 3. LOẠI TỪ DỄ LÀM GIỐNG H
+  // 3. FIX CÁC LỖI “CẤN CÂU”
   // =========================
+  comment = comment.replace(/cố gắng trong thể hiện/gi, "có cố gắng thể hiện");
+  comment = comment.replace(/trong thể hiện/gi, "trong việc thể hiện");
+  comment = comment.replace(/cố gắng có sự cố gắng/gi, "có cố gắng");
+  comment = comment.replace(/có sự cố gắng/gi, "có cố gắng");
+
+  // chống lặp từ
+  comment = comment.replace(/cố gắng\s+cố gắng/gi, "cố gắng");
+
+  // bỏ từ nối gây giống H
   comment = comment.replace(/tuy nhiên,?/gi, "");
 
-  // chống lặp "cố gắng cố gắng"
-  comment = comment.replace(/cố gắng\s+cố gắng/gi, "cố gắng");
-  comment = comment.replace(/(có\s+)?sự\s+cố gắng/gi, "cố gắng");
-  comment = comment.replace(/cố gắng\s+(có\s+)?cố gắng/gi, "cố gắng");
-
   // =========================
-  // 4. THÊM GÓP Ý CUỐI (nếu chưa có)
+  // 4. THÊM GÓP Ý CUỐI (nếu thiếu)
   // =========================
   if (!/cần|nên|chú ý|rèn luyện|cố gắng/i.test(comment)) {
 
     const supports = [
-      "Em cần luyện tập thêm để cải thiện.",
+      "Em cần luyện tập thêm để cải thiện kỹ năng.",
       "Em nên rèn luyện thêm để nắm vững kiến thức.",
       "Em cần chú ý hơn trong quá trình làm bài.",
-      "Em nên luyện tập thường xuyên hơn.",
-      "Em cố gắng thêm để tiến bộ hơn."
+      "Em nên luyện tập thường xuyên hơn để tiến bộ.",
+      "Em cố gắng thêm để hoàn thiện bài làm tốt hơn."
     ];
 
     comment = comment.replace(/[.!?]\s*$/, "");
