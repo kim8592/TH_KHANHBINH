@@ -178,7 +178,7 @@ if (hasDevelopment) {
  } else if (level === "H" || level === "Đ") {
 
   // =========================
-  // 1. HẠ TONE
+  // 1. HẠ TONE (GIỮ NGHĨA NHƯNG MỀM HƠN)
   // =========================
   comment = comment
     .replace(/rất tốt/gi, "tốt")
@@ -188,26 +188,28 @@ if (hasDevelopment) {
     .replace(/rất chính xác/gi, "khá chính xác");
 
   // =========================
-  // 2. CHUẨN HOÁ "TUY NHIÊN" (QUAN TRỌNG)
+  // 2. CHUẨN HOÁ "TUY NHIÊN"
   // =========================
   comment = comment
-    // sửa ", tuy nhiên" → ". Tuy nhiên,"
     .replace(/,\s*tuy nhiên,\s*/gi, ". Tuy nhiên, ")
-    .replace(/;\s*tuy nhiên,\s*/gi, ". Tuy nhiên, ")
     .replace(/,\s*tuy nhiên\s*/gi, ". Tuy nhiên, ")
-    // đảm bảo viết hoa đầu câu
-    .replace(/\. tuy nhiên,/g, ". Tuy nhiên,");
+    .replace(/\.\s*tuy nhiên,/gi, ". Tuy nhiên,");
 
   // =========================
-  // 3. CHUẨN HOÁ CUỐI CÂU
+  // 3. XOÁ DẤU CÂU CUỐI DƯ THỪA
   // =========================
-  comment = comment.replace(/[.!?]\s*$/, "");
+  comment = comment.trim().replace(/[.!?]\s*$/, "");
 
   // =========================
-  // 4. THÊM HƯỚNG PHÁT HUY (NẾU THIẾU)
+  // 4. TRÁNH LẶP "TIẾP TỤC"
+  // =========================
+  comment = comment.replace(/tiếp tục\s+tiếp tục/gi, "tiếp tục");
+
+  // =========================
+  // 5. THÊM HƯỚNG PHÁT HUY (CHUẨN HƠN)
   // =========================
   const hasDirection =
-    /(phát huy|rèn luyện|cố gắng|duy trì|tiếp tục|nâng cao)/i.test(comment);
+    /(phát huy|rèn luyện|cố gắng|duy trì|nâng cao)/i.test(comment);
 
   if (!hasDirection) {
 
@@ -226,18 +228,16 @@ if (hasDevelopment) {
   }
 
   // =========================
-  // 5. VIẾT HOA SAU DẤU CÂU
+  // 6. VIẾT HOA SAU DẤU CÂU
   // =========================
   comment = comment.replace(
     /([.!?]\s*)([a-zà-ỹ])/g,
     (m, p1, p2) => p1 + p2.toUpperCase()
   );
 
-  comment =
-    comment.charAt(0).toUpperCase() + comment.slice(1);
+  comment = comment.charAt(0).toUpperCase() + comment.slice(1);
 }
-}
-  
+
 
  } else if (level === "C") {
 
