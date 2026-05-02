@@ -131,10 +131,7 @@ const processComment = (comment, level) => {
 
   // Xử lý theo mức
   if (level === "T") {
-    if (hasDevelopment) {
-      comment = comment.split(/\bnhưng\b|\btuy nhiên\b|\bsong\b/i)[0].trim();
-      comment = comment.split(/\bcần\b|\bcố gắng\b|\bkhắc phục\b|\brèn luyện\b/i)[0].trim();
-    }
+   
     if (isBroken) {
       const goodList = ["Em học tập tích cực và tiếp thu kiến thức rất nhanh.", "Em nắm vững kiến thức và thể hiện sự tiến bộ rõ rệt.", "Em có khả năng học tập tốt và luôn hoàn thành nhiệm vụ.", "Em chăm chỉ và đạt nhiều kết quả đáng khen.", "Em tiếp thu nhanh và vận dụng kiến thức hiệu quả."];
       comment = goodList[Math.floor(Math.random() * goodList.length)];
