@@ -206,23 +206,24 @@ if (hasDevelopment) {
 
   } else if (level === "C") {
 
-  // hạ tone các từ quá mạnh
-  comment = comment.replace(/rất tốt/gi, "đã cố gắng trong");
-  comment = comment.replace(/làm tốt/gi, "đã cố gắng");
-  comment = comment.replace(/nổi bật/gi, "có cố gắng");
+  // hạ tone nhẹ nhưng vẫn tích cực
+  comment = comment.replace(/rất tốt/gi, "đã có cố gắng");
+  comment = comment.replace(/làm tốt/gi, "đã có cố gắng");
+  comment = comment.replace(/tốt/gi, "có cố gắng");
+  comment = comment.replace(/nổi bật/gi, "có tiến bộ");
+  comment = comment.replace(/xuất sắc/gi, "đã nỗ lực");
   comment = comment.replace(/nhanh nhẹn/gi, "có tiến bộ");
-  comment = comment.replace(/xuất sắc/gi, "có cố gắng");
   comment = comment.replace(/chính xác/gi, "tương đối chính xác");
 
-  // nếu chưa có góp ý thì thêm
+  // thêm góp ý cuối
   if (!/cần|nên|chú ý|rèn luyện|cố gắng/i.test(comment)) {
 
     const supports = [
       "Em cần luyện tập thêm để cải thiện.",
       "Em nên cố gắng hơn để nắm vững kiến thức.",
       "Em cần chú ý hơn trong quá trình làm bài.",
-      "Em tiếp tục rèn luyện để tiến bộ hơn.",
-      "Em nên luyện tập thường xuyên hơn nhé."
+      "Em nên rèn luyện thường xuyên hơn nhé.",
+      "Em cố gắng thêm để tiến bộ hơn."
     ];
 
     comment = comment.replace(/[.!?]\s*$/, "");
@@ -233,6 +234,7 @@ if (hasDevelopment) {
     comment += ". " + endText;
   }
 }
+
 
   return comment.replace(/\s+/g, ' ').trim();
 };
