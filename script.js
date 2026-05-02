@@ -175,11 +175,34 @@ if (hasDevelopment) {
 }
 
   } else if (level === "H" || level === "Đ") {
-    if (!hasDevelopment) {
-      if (isPraise) {
-        const encourages = ["Em có thể thử sức với các bài nâng cao hơn.", "Em rèn luyện thêm để nâng cao tốc độ và độ chính xác.", "Em tiếp tục mở rộng kiến thức với dạng bài khó hơn.", "Em phát triển khả năng bằng luyện tập thường xuyên."];
-        comment += " " + encourages[Math.floor(Math.random() * encourages.length)];
-      }
+
+  // hạ tone nếu quá mạnh như mức T
+  comment = comment.replace(/rất tốt/gi, "tốt");
+  comment = comment.replace(/xuất sắc/gi, "tốt");
+  comment = comment.replace(/nổi bật/gi, "đáng ghi nhận");
+  comment = comment.replace(/tiến bộ rõ rệt/gi, "có tiến bộ");
+  comment = comment.replace(/rất chính xác/gi, "khá chính xác");
+
+  // nếu chưa có hướng phát huy thì thêm
+  if (!/cần|nên|tiếp tục|phát huy|rèn luyện|cố gắng/i.test(comment)) {
+
+    const encourages = [
+      "Em tiếp tục phát huy nhé.",
+      "Em tiếp tục cố gắng để tiến bộ hơn.",
+      "Em duy trì tinh thần học tập tích cực nhé.",
+      "Em tiếp tục rèn luyện để đạt kết quả tốt hơn.",
+      "Em cố gắng thêm để ngày càng tiến bộ.",
+      "Em phát huy khả năng của mình hơn nữa."
+    ];
+
+    comment = comment.replace(/[.!?]\s*$/, "");
+
+    const endText =
+      encourages[Math.floor(Math.random() * encourages.length)];
+
+    comment += ". " + endText;
+  }
+}
 }
 
   } else if (level === "C") {
