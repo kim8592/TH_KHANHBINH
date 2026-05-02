@@ -177,23 +177,32 @@ if (hasDevelopment) {
 
  } else if (level === "H" || level === "Đ") {
 
-  // đổi chữ cần thành tiếp tục đúng hoa/thường
-  comment = comment.replace(/\bcần\b/gi, (match, offset) => {
-    const before = comment.slice(0, offset).trim();
-
-    const isSentenceStart =
-      before === "" || /[.!?]\s*$/.test(before);
-
-    return isSentenceStart ? "Tiếp tục" : "tiếp tục";
-  });
-
-  // hạ tone
+  // =========================
+  // 1. HẠ TONE
+  // =========================
   comment = comment.replace(/rất tốt/gi, "tốt");
   comment = comment.replace(/xuất sắc/gi, "tốt");
   comment = comment.replace(/nổi bật/gi, "đáng ghi nhận");
   comment = comment.replace(/tiến bộ rõ rệt/gi, "có tiến bộ");
   comment = comment.replace(/rất chính xác/gi, "khá chính xác");
 
+  // =========================
+  // 2. CHỈ THÊM "TIẾP TỤC" KHI CẦN THIẾT (AN TOÀN)
+  // =========================
+  comment = comment.replace(
+    /(\.|,|\s)cần\s(?=rèn|phát huy|chú ý|luyện|cố gắng)/gi,
+    "$1tiếp tục "
+  );
+
+  // =========================
+  // 3. CHỐNG LẶP "TIẾP TỤC"
+  // =========================
+  comment = comment.replace(/tiếp tục\s+tiếp tục/gi, "tiếp tục");
+  comment = comment.replace(/Tiếp tục\s+tiếp tục/gi, "Tiếp tục");
+
+  // =========================
+  // 4. THÊM HƯỚNG PHÁT HUY NẾU CHƯA CÓ
+  // =========================
   if (!/tiếp tục|phát huy|rèn luyện|cố gắng|duy trì|nâng cao/i.test(comment)) {
 
     const encourages = [
