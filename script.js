@@ -185,13 +185,14 @@ if (hasDevelopment) {
   comment = comment.replace(/nổi bật/gi, "đáng ghi nhận");
   comment = comment.replace(/tiến bộ rõ rệt/gi, "có tiến bộ");
   comment = comment.replace(/rất chính xác/gi, "khá chính xác");
- // 2. XOÁ HOÀN TOÀN "TUY NHIÊN" (GỘP CÂU CHO MƯỢT)
+
+  // 2. XOÁ HOÀN TOÀN "TUY NHIÊN" (GỘP CÂU CHO MƯỢT)
   // =========================
   comment = comment
     .replace(/,\s*tuy nhiên,?\s*/gi, ". ")
     .replace(/\.\s*tuy nhiên,?\s*/gi, ". ")
     .replace(/\s+tuy nhiên,?\s*/gi, ". ");
-  // =========================
+
   // 2. CHỈ THÊM "TIẾP TỤC" KHI CẦN THIẾT (AN TOÀN)
   // =========================
   comment = comment.replace(
@@ -199,17 +200,14 @@ if (hasDevelopment) {
     "$1tiếp tục "
   );
 
-  // =========================
   // 3. CHỐNG LẶP "TIẾP TỤC"
   // =========================
   comment = comment.replace(/tiếp tục\s+tiếp tục/gi, "tiếp tục");
   comment = comment.replace(/Tiếp tục\s+tiếp tục/gi, "Tiếp tục");
 
-  // =========================
   // 4. THÊM HƯỚNG PHÁT HUY NẾU CHƯA CÓ
   // =========================
   if (!/tiếp tục|phát huy|rèn luyện|cố gắng|duy trì|nâng cao/i.test(comment)) {
-
     const encourages = [
       "Em tiếp tục phát huy nhé.",
       "Em tiếp tục cố gắng để tiến bộ hơn.",
@@ -218,14 +216,22 @@ if (hasDevelopment) {
       "Em cố gắng thêm để ngày càng tiến bộ.",
       "Em phát huy khả năng của mình hơn nữa."
     ];
-
     comment = comment.replace(/[.!?]\s*$/, "");
-
-    const endText =
-      encourages[Math.floor(Math.random() * encourages.length)];
-
+    const endText = encourages[Math.floor(Math.random() * encourages.length)];
     comment += ". " + endText;
   }
+
+  // ==========================================
+  // 5. VIẾT HOA SAU DẤU CHẤM (MỚI THÊM)
+  // ==========================================
+  comment = comment.replace(
+    /([.!?]\s+)([a-zà-ỹ])/g,
+    (m, p1, p2) => p1 + p2.toUpperCase()
+  );
+
+  // Đảm bảo chữ đầu câu luôn viết hoa
+  comment = comment.charAt(0).toUpperCase() + comment.slice(1);
+}
 
 
  } else if (level === "C") {
