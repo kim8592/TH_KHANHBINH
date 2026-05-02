@@ -226,7 +226,15 @@ if (hasDevelopment) {
 
     comment += ". " + endText;
   }
+// 6. CHUẨN HOÁ HOA SAU DẤU CÂU
+  // =========================
+  comment = comment.replace(
+    /([.!?]\s*)([a-zà-ỹ])/g,
+    (m, p1, p2) => p1 + p2.toUpperCase()
+  );
 
+  comment = comment.charAt(0).toUpperCase() + comment.slice(1);
+}
 
  } else if (level === "C") {
 
