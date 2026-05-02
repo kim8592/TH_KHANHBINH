@@ -185,7 +185,12 @@ if (hasDevelopment) {
   comment = comment.replace(/nổi bật/gi, "đáng ghi nhận");
   comment = comment.replace(/tiến bộ rõ rệt/gi, "có tiến bộ");
   comment = comment.replace(/rất chính xác/gi, "khá chính xác");
-
+ // 2. XOÁ HOÀN TOÀN "TUY NHIÊN" (GỘP CÂU CHO MƯỢT)
+  // =========================
+  comment = comment
+    .replace(/,\s*tuy nhiên,?\s*/gi, ". ")
+    .replace(/\.\s*tuy nhiên,?\s*/gi, ". ")
+    .replace(/\s+tuy nhiên,?\s*/gi, ". ");
   // =========================
   // 2. CHỈ THÊM "TIẾP TỤC" KHI CẦN THIẾT (AN TOÀN)
   // =========================
