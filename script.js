@@ -236,7 +236,8 @@ if (hasDevelopment) {
   comment =
     comment.charAt(0).toUpperCase() + comment.slice(1);
 }
-
+}
+  
 
  } else if (level === "C") {
 
