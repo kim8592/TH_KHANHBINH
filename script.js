@@ -216,31 +216,42 @@ if (hasDevelopment) {
 
  } else if (level === "C") {
 
-  // đổi tone mở đầu mềm hơn
+  // =========================
+  // 1. MỞ ĐẦU (khen nhẹ, tránh giống H)
+  // =========================
+  comment = comment.replace(/^Em làm tốt/gi, "Em đã có cố gắng trong");
+  comment = comment.replace(/^Em làm/gi, "Em đã có cố gắng thực hiện");
+  comment = comment.replace(/^Em có/gi, "Em bước đầu có cố gắng");
   comment = comment.replace(/^Em đã/gi, "Em đã có cố gắng");
-  comment = comment.replace(/^Em có/gi, "Em đã có cố gắng");
-  comment = comment.replace(/^Em biết/gi, "Em bước đầu biết");
-  comment = comment.replace(/^Em làm/gi, "Em đã cố gắng làm");
 
-  // hạ tone (thay cụm dài trước)
-  comment = comment.replace(/rất chính xác/gi, "chưa thật chính xác");
-  comment = comment.replace(/rất tốt/gi, "ở mức cơ bản");
-  comment = comment.replace(/xuất sắc/gi, "đã nỗ lực");
+  // =========================
+  // 2. HẠ TONE (tránh quá tích cực như H)
+  // =========================
+  comment = comment.replace(/rất tốt/gi, "đạt yêu cầu cơ bản");
+  comment = comment.replace(/xuất sắc/gi, "đã có tiến bộ");
   comment = comment.replace(/nổi bật/gi, "có tiến bộ");
-  comment = comment.replace(/\btốt\b/gi, "có cố gắng");
+  comment = comment.replace(/rất chính xác/gi, "chưa thật chính xác");
+  comment = comment.replace(/\btốt\b/gi, "đạt yêu cầu");
   comment = comment.replace(/\bchính xác\b/gi, "tương đối chính xác");
 
-  // bỏ từ nối
+  // =========================
+  // 3. LOẠI TỪ DỄ LÀM GIỐNG H
+  // =========================
   comment = comment.replace(/tuy nhiên,?/gi, "");
 
-  // nếu chưa có góp ý thì thêm
+  // chống lặp "cố gắng cố gắng"
+  comment = comment.replace(/cố gắng\s+cố gắng/gi, "cố gắng");
+
+  // =========================
+  // 4. THÊM GÓP Ý CUỐI (nếu chưa có)
+  // =========================
   if (!/cần|nên|chú ý|rèn luyện|cố gắng/i.test(comment)) {
 
     const supports = [
       "Em cần luyện tập thêm để cải thiện.",
-      "Em nên cố gắng hơn để nắm vững kiến thức.",
+      "Em nên rèn luyện thêm để nắm vững kiến thức.",
       "Em cần chú ý hơn trong quá trình làm bài.",
-      "Em nên rèn luyện thường xuyên hơn nhé.",
+      "Em nên luyện tập thường xuyên hơn.",
       "Em cố gắng thêm để tiến bộ hơn."
     ];
 
@@ -252,10 +263,16 @@ if (hasDevelopment) {
     comment += ". " + endText;
   }
 
-  // viết hoa sau dấu chấm
-  comment = comment.replace(/([.!?]\s*)([a-zà-ỹ])/g, (m, p1, p2) =>
-    p1 + p2.toUpperCase()
+  // =========================
+  // 5. VIẾT HOA SAU DẤU CÂU
+  // =========================
+  comment = comment.replace(
+    /([.!?]\s*)([a-zà-ỹ])/g,
+    (m, p1, p2) => p1 + p2.toUpperCase()
   );
+
+  comment =
+    comment.charAt(0).toUpperCase() + comment.slice(1);
 }
 
 
