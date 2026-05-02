@@ -144,7 +144,10 @@ const processComment = (comment, level) => {
       const goodList = ["Em học tập tích cực và tiếp thu kiến thức rất nhanh.", "Em nắm vững kiến thức và thể hiện sự tiến bộ rõ rệt.", "Em có khả năng học tập tốt và luôn hoàn thành nhiệm vụ.", "Em chăm chỉ và đạt nhiều kết quả đáng khen.", "Em tiếp thu nhanh và vận dụng kiến thức hiệu quả."];
       comment = goodList[Math.floor(Math.random() * goodList.length)];
     }
-    if (!/rất tốt|nổi bật|đáng khen|đáng ghi nhận/i.test(comment)) {
+   if (
+   !/đáng khen|đáng ghi nhận|xuất sắc|nổi bật/i.test(comment)
+   || comment.length < 65
+) {
 
   const praiseEnds = [
     "thể hiện rất tốt, đáng khen.",
