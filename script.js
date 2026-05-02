@@ -226,6 +226,16 @@ if (hasDevelopment) {
 
     comment += ". " + endText;
   }
+// ==========================================
+  // 5. VIẾT HOA SAU DẤU CHẤM (MỚI THÊM)
+  // ==========================================
+  comment = comment.replace(
+    /([.!?]\s+)([a-zà-ỹ])/g,
+    (m, p1, p2) => p1 + p2.toUpperCase()
+  );
+
+  // Đảm bảo chữ đầu câu luôn viết hoa
+  comment = comment.charAt(0).toUpperCase() + comment.slice(1);
 
 
  } else if (level === "C") {
